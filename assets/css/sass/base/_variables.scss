@@ -1,0 +1,35 @@
+// -----------
+// Typography 
+// -----------
+
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'museo-slab', serif;
+
+// --------------------------
+// Colors
+// --------------------------
+
+// Primary Colors
+$color-primary: #043C5B;
+$color-primary-dark: darken($color-primary, 7.5%);
+$color-primary-light: lighten($color-primary, 7.5%);
+
+// Secondary Colors
+$color-secondary: #e16c2d;
+$color-secondary-dark: darken($color-secondary, 7.5%);
+$color-secondary-light: lighten($color-secondary, 7.5%);
+
+// Teal
+$teal: #59bec9;
+
+// Gray
+$gray: #465059;
+
+// Light Blue
+$light-blue: #68a6d4;
+
+// Dark Blue
+$dark-blue: #537d9e;
+
+$black: #212529;
+$white: #fff;

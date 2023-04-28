@@ -1,0 +1,22 @@
+// Link Colors
+@mixin link-colors($link-color, $hover-color) {
+    color: $link-color;
+
+    &:hover {
+        color: $hover-color;
+    }
+}
+
+// Media Query
+@mixin mq($bp) {
+    @media screen and (min-width: $bp) {
+        @content;
+    }
+}
+
+// Flex
+@mixin flex($align, $justify) {
+    align-items: $align;
+    display: flex;
+    justify-content: $justify;
+}
