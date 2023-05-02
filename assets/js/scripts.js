@@ -8,6 +8,7 @@ function addEventListeners() {
         inning.addEventListener('click', (evt) => {
             resetZoomedInnings();
             inning.classList.toggle('score-zoom');
+            initCloseBtn(inning);
         });
     });
 
@@ -15,6 +16,17 @@ function addEventListeners() {
         box.addEventListener('dblclick', (evt) => {
             box.parentElement.classList.remove('score-zoom');
         });
+    });
+}
+
+function initCloseBtn(el) {
+    const btnClose = el.querySelector('.btn-close');
+
+    btnClose.addEventListener('click', (evt) => {
+        const zoomedCell = btnClose.closest('td');
+        setTimeout(() => {
+            zoomedCell.classList.remove('score-zoom');
+        }, 25);
     });
 }
 
