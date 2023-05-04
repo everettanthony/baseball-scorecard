@@ -20,6 +20,18 @@
                     border-color: #fff;
                     padding: 0 0.5rem;
                     vertical-align: bottom;   
+                            
+                    [contenteditable="true"]:active,
+                    [contenteditable="true"]:focus {
+                        background-color: #fdfeff;
+                        border-bottom: 1px solid #14477a;
+                        outline: 0;
+
+                        &::selection {
+                            background-color: rgba(20,71,122,.5);
+                            color: #fff;
+                        }
+                    }
                 }
 
                 span {
@@ -84,10 +96,28 @@
                         height: 100%;
                         position: relative;
                         width: 100%;
+
+                        canvas {
+                            height: 100%;
+                            left: 0;
+                            position: absolute;
+                            top: 0;
+                            width: 100%;
+                            z-index: 8;
+                        }
                     }
 
                     &.score-diamond {
+                        border-bottom: 1px solid #c3c3c3;
                         padding: 0;
+                    }
+
+                    &.score-diamond-hdr {
+                        border-bottom: none;
+                        display: none;
+                        justify-content: space-between;
+                        padding: 3px 3px 0 4px;
+                        z-index: 9;
                     }
                 }
 
@@ -102,6 +132,17 @@
 
                 &:nth-child(-n+3) {
                     padding: 0;
+
+                    [contenteditable="true"]:active,
+                    [contenteditable="true"]:focus {
+                        background-color: #fdfeff;
+                        outline: 1px solid #14477a;
+
+                        &::selection {
+                            background-color: rgba(20,71,122,.5);
+                            color: #fff;
+                        }
+                    }
                 }
 
                 &:nth-child(n+4) {
@@ -118,7 +159,7 @@
                         transform: scale(1.5) translate(16px, 10px);
                         z-index: 9;
 
-                        .btn-close {
+                        .score-diamond-hdr {
                             display: flex;
                         }
                     }
@@ -156,6 +197,7 @@
     }
 
     &-hdr {
+        border-bottom: 1px solid transparent;
         font-weight: 400;
     }
 
@@ -165,6 +207,10 @@
         margin:  0 auto;
         transform: rotate(45deg);
         width: 35px;     
+
+        &.diamond-fill {
+            background-color: #000;
+        }
     }
 
     .col-totals {
@@ -239,17 +285,44 @@
         }
     }
 
-    .btn-close {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ed0d56'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-        display: none;
-        height: 2px;
+    &-diamond-hdr {
+        align-items: center;
+        left: 0;
         position: absolute;
-        right: 3px;
-        top: 3px;
-        width: 2px;
+        top: 0;
+        width: 100%;
 
-        &:focus {
-            box-shadow: none;
+        button {
+            background-color: transparent;
+            background-position: left top;
+            background-repeat: no-repeat;
+            border: none;
+            border-radius: 0.375rem;
+            box-sizing: content-box;
+            height: 9px;
+            opacity: 1;
+            padding: 0;
+            width: 9px;
+
+            &:hover {
+                opacity: .75;
+            }
+    
+            &:focus {
+                box-shadow: none;
+            }     
+            
+            &.btn-close {
+                background-image: url("../../assets/img/icon-close.svg");    
+                background-size: 9px 9px;         
+            }
+
+            &.btn-reset {
+                background-image: url("../../assets/img/icon-reset.svg"); 
+                background-size: 8px 8px;
+                height: 8px;
+                width: 8px;            
+            }
         }
     }
 }
@@ -305,6 +378,8 @@
         tbody {
             tr {
                 td {
+                    height: 34px;
+
                     &:nth-child(3),
                     &:nth-child(n+4) {
                         text-align: center;
