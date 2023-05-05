@@ -1,5 +1,6 @@
 const scoreBoxes = document.querySelectorAll('.score-tbl tbody td:nth-child(n+4)');
 const colDivs = document.querySelectorAll('.score-tbl tbody td:nth-child(-n+3) div');
+const editableDivs = document.querySelectorAll('[contenteditable="true"]');
 const scoreDiamonds = document.querySelectorAll('.score-diamond');
 const btnClose = document.querySelectorAll('.btn-close');
 const btnReset = document.querySelectorAll('.btn-reset');
@@ -27,15 +28,34 @@ function addEventListeners() {
 
     // Make first three columns of score card editable
     colDivs.forEach((el) => {
-        el.addEventListener('dblclick', (evt) => {
+        el.addEventListener('click', (evt) => {
+            const range = document.createRange();
+            const selection = window.getSelection();
+
             el.setAttribute('contenteditable', true);
             el.focus();
+       
+            range.selectNodeContents(el);          
+            selection.removeAllRanges();
+            selection.addRange(range);
         });
 
         el.addEventListener('keypress', (evt) => {
             if (evt.which === 13) {
                 evt.preventDefault(); // disable Enter key
             }
+        });
+    });
+
+    // Highlight text in content editable divs
+    editableDivs.forEach((el) => {
+        el.addEventListener('click', (evt) => {
+            const range = document.createRange();
+            const selection = window.getSelection();
+        
+            range.selectNodeContents(el);          
+            selection.removeAllRanges();
+            selection.addRange(range);
         });
     });
 
@@ -64,7 +84,11 @@ function addEventListeners() {
     // Reset all info from score box
     btnReset.forEach((btn) => {
         btn.addEventListener('click', (evt) => {
-            const box = evt.target.closest('.score-box');
+            const zoomed = btn.closest('.score-zoom');
+            const canvas = zoomed.querySelector('canvas');
+            const context = canvas.getContext('2d');
+            context.setTransform(1, 0, 0, 1, 0, 0);
+            context.clearRect(0, 0, context.canvas.width, context.canvas.height);
         });
     });
 }
