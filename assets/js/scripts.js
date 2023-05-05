@@ -13,7 +13,7 @@ addEventListeners();
 function addEventListeners() {
     // Click listener to zoom in on score boxes
     scoreBoxes.forEach((box) => {
-        box.addEventListener('click', (evt) => {
+        box.addEventListener('dblclick', (evt) => {
             deactivateZoomedInnings();
             box.classList.toggle('score-zoom');
 
@@ -188,9 +188,8 @@ function initCanvas(el) {
     const ongoingTouches = [];
 
     function handleStart(evt) {
-        evt.preventDefault();
+        if (evt.cancelable) evt.preventDefault();
         const touches = evt.changedTouches;
-    
         offsetX = canvas.getBoundingClientRect().left;
         offsetY = canvas.getBoundingClientRect().top;
     
@@ -200,7 +199,7 @@ function initCanvas(el) {
     }
       
     function handleMove(evt) {
-        evt.preventDefault();
+        if (evt.cancelable) evt.preventDefault();
         const touches = evt.changedTouches;
     
         for (let i = 0; i < touches.length; i++) {
@@ -221,9 +220,8 @@ function initCanvas(el) {
     }
       
     function handleEnd(evt) {
-        evt.preventDefault();
+        if (evt.cancelable) evt.preventDefault();
         const touches = evt.changedTouches;
-        alert('handle end');
         for (let i = 0; i < touches.length; i++) {
             let idx = ongoingTouchIndexById(touches[i].identifier);
     
@@ -236,9 +234,9 @@ function initCanvas(el) {
     }
       
     function handleCancel(evt) {
-        evt.preventDefault();
+        if (evt.cancelable) evt.preventDefault();
         const touches = evt.changedTouches;
-        alert('handle cancel');
+
         for (let i = 0; i < touches.length; i++) {
             let idx = ongoingTouchIndexById(touches[i].identifier);
             ongoingTouches.splice(idx, 1);  // remove it; we're done
