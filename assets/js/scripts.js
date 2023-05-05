@@ -19,6 +19,13 @@ function addEventListeners() {
 
             if (!box.classList.contains('canvas-active')) initCanvas(box);
         });
+
+        box.addEventListener('touchstart', (evt) => {
+            deactivateZoomedInnings();
+            box.classList.toggle('score-zoom');
+
+            if (!box.classList.contains('canvas-active')) initCanvas(box);
+        });
     });
 
     // Close zoomed in score box when clicked outside of it
@@ -209,8 +216,8 @@ function initCanvas(el) {
     
             if (idx >= 0) {
                 context.beginPath();
-                context.moveTo(ongoingTouches[idx].clientX - offsetX, ongoingTouches[idx].clientY - offsetY);
-                context.lineTo(touches[i].clientX - offsetX, touches[i].clientY - offsetY);
+                context.moveTo(ongoingTouches[idx].clientX - offsetX, ongoingTouches[idx].clientY - (offsetY+14));
+                context.lineTo(touches[i].clientX - offsetX, touches[i].clientY - (offsetY+14));
                 context.lineWidth = drawSettings.lineWidth;
                 context.strokeStyle = drawSettings.color;
                 context.lineJoin = 'round';
