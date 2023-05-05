@@ -14,7 +14,7 @@ function addEventListeners() {
     // Click listener to zoom in on score boxes
     scoreBoxes.forEach((box) => {
         box.addEventListener('click', (evt) => {
-            resetZoomedInnings();
+            deactivateZoomedInnings();
             box.classList.toggle('score-zoom');
 
             if (!box.classList.contains('canvas-active')) initCanvas(box);
@@ -24,7 +24,7 @@ function addEventListeners() {
     // Close zoomed in score box when clicked outside of it
     document.body.addEventListener('click', (evt) => {
         if (!evt.target.closest('.score-zoom')) {
-            resetZoomedInnings();
+            deactivateZoomedInnings();
         }
     });
 
@@ -112,7 +112,7 @@ function addEventListeners() {
     });
 }
 
-function resetZoomedInnings() {
+function deactivateZoomedInnings() {
     scoreBoxes.forEach((box) => {
         box.classList.remove('score-zoom');
         box.classList.remove('canvas-active');
