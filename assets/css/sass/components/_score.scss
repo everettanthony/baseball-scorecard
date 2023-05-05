@@ -142,11 +142,7 @@
                             background-color: rgba(20,71,122,.5);
                             color: #fff;
                         }
-
-            
                     }
-
-
                 }
 
                 &:nth-child(n+4) {
@@ -173,6 +169,17 @@
 
         tfoot {
             tr {
+                [contenteditable="true"]:active,
+                [contenteditable="true"]:focus {
+                    background-color: #fdfeff;
+                    outline: 1px solid #14477a;
+        
+                    &::selection {
+                        background-color: rgba(20,71,122,.5);
+                        color: #fff;
+                    }
+                }
+
                 td {
                     padding: 0;
 
@@ -381,6 +388,17 @@
 
         tbody {
             tr {
+                [contenteditable="true"]:active,
+                [contenteditable="true"]:focus {
+                    background-color: #fdfeff;
+                    outline: 1px solid #14477a;
+        
+                    &::selection {
+                        background-color: rgba(20,71,122,.5);
+                        color: #fff;
+                    }
+                }
+
                 td {
                     height: 34px;
 

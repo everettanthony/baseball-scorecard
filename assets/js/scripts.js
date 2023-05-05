@@ -1,5 +1,7 @@
 const scoreBoxes = document.querySelectorAll('.score-tbl tbody td:nth-child(n+4)');
 const colDivs = document.querySelectorAll('.score-tbl tbody td:nth-child(-n+3) div');
+const gridCols = document.querySelectorAll('.grid-col');
+const pitchersTblCells = document.querySelectorAll('.pitchers-tbl tbody td');
 const editableDivs = document.querySelectorAll('[contenteditable="true"]');
 const scoreDiamonds = document.querySelectorAll('.score-diamond');
 const btnClose = document.querySelectorAll('.btn-close');
@@ -26,19 +28,23 @@ function addEventListeners() {
         }
     });
 
-    // Make first three columns of score card editable
-    colDivs.forEach((el) => {
-        el.addEventListener('click', (evt) => {
+    // Make all grid col divs editable 
+    gridCols.forEach((col) => {
+        initEditable(col);
+
+        col.addEventListener('click', (evt) => {
             const range = document.createRange();
             const selection = window.getSelection();
-
-            el.setAttribute('contenteditable', true);
-            el.focus();
-       
-            range.selectNodeContents(el);          
+        
+            range.selectNodeContents(col);          
             selection.removeAllRanges();
             selection.addRange(range);
         });
+    });   
+
+    // Make first three columns of score card editable
+    colDivs.forEach((el) => {
+        el.addEventListener('click', (evt) => initEditable(el));
 
         el.addEventListener('keypress', (evt) => {
             if (evt.which === 13) {
@@ -46,6 +52,17 @@ function addEventListeners() {
             }
         });
     });
+
+    // Make pitchers table cells editable on click
+    pitchersTblCells.forEach((el) => {
+        el.addEventListener('click', (evt) => initEditable(el));
+
+        el.addEventListener('keypress', (evt) => {
+            if (evt.which === 13) {
+                evt.preventDefault(); // disable Enter key
+            }
+        });
+    });   
 
     // Highlight text in content editable divs
     editableDivs.forEach((el) => {
@@ -97,6 +114,19 @@ function resetZoomedInnings() {
     scoreBoxes.forEach((box) => {
         box.classList.remove('score-zoom');
     });    
+}
+
+function initEditable(el) {
+    console.log(el);
+    const range = document.createRange();
+    const selection = window.getSelection();
+
+    el.setAttribute('contenteditable', true);
+    el.focus();
+
+    range.selectNodeContents(el);          
+    selection.removeAllRanges();
+    selection.addRange(range);
 }
 
 function initCanvas(el) {

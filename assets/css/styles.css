@@ -171,6 +171,20 @@ h1, h2, h3, h4 {
   display: -ms-flexbox;
   display: flex;
 }
+.score-tbl tfoot tr [contenteditable=true]:active,
+.score-tbl tfoot tr [contenteditable=true]:focus {
+  background-color: #fdfeff;
+  outline: 1px solid #14477a;
+}
+.score-tbl tfoot tr [contenteditable=true]:active::-moz-selection, .score-tbl tfoot tr [contenteditable=true]:focus::-moz-selection {
+  background-color: rgba(20, 71, 122, 0.5);
+  color: #fff;
+}
+.score-tbl tfoot tr [contenteditable=true]:active::selection,
+.score-tbl tfoot tr [contenteditable=true]:focus::selection {
+  background-color: rgba(20, 71, 122, 0.5);
+  color: #fff;
+}
 .score-tbl tfoot tr td {
   padding: 0;
 }
@@ -352,6 +366,20 @@ h1, h2, h3, h4 {
 }
 .pitchers-tbl thead tr th:nth-child(3) {
   width: 30px;
+}
+.pitchers-tbl tbody tr [contenteditable=true]:active,
+.pitchers-tbl tbody tr [contenteditable=true]:focus {
+  background-color: #fdfeff;
+  outline: 1px solid #14477a;
+}
+.pitchers-tbl tbody tr [contenteditable=true]:active::-moz-selection, .pitchers-tbl tbody tr [contenteditable=true]:focus::-moz-selection {
+  background-color: rgba(20, 71, 122, 0.5);
+  color: #fff;
+}
+.pitchers-tbl tbody tr [contenteditable=true]:active::selection,
+.pitchers-tbl tbody tr [contenteditable=true]:focus::selection {
+  background-color: rgba(20, 71, 122, 0.5);
+  color: #fff;
 }
 .pitchers-tbl tbody tr td {
   height: 34px;
