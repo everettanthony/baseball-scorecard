@@ -157,6 +157,8 @@ function initCanvas(el) {
     el.classList.add('canvas-active');
     const canvas = el.querySelector('canvas');
     const context = canvas.getContext('2d');
+    canvas.width = 134;
+    canvas.height = 104;
 
     let isDrawing = false;
     let x = 0;
@@ -214,6 +216,13 @@ function initCanvas(el) {
         const touches = evt.changedTouches;
         offsetX = canvas.getBoundingClientRect().left;
         offsetY = canvas.getBoundingClientRect().top;
+        // Update canvas width and height attributes on zoom
+        // width: 89
+        // Height: 69
+
+        // Zoomed
+        // width: 130.5
+        // height: 100.64
     
         for (let i = 0; i < touches.length; i++) {
             ongoingTouches.push(copyTouch(touches[i]));
@@ -223,14 +232,13 @@ function initCanvas(el) {
     function handleMove(evt) {
         if (evt.cancelable) evt.preventDefault();
         const touches = evt.changedTouches;
-    
+
         for (let i = 0; i < touches.length; i++) {
             const idx = ongoingTouchIndexById(touches[i].identifier);
-    
             if (idx >= 0) {
                 context.beginPath();
-                context.moveTo(ongoingTouches[idx].clientX - (offsetX), ongoingTouches[idx].clientY - (offsetY));
-                context.lineTo(touches[i].clientX - (offsetX), touches[i].clientY - (offsetY));
+                context.moveTo(ongoingTouches[idx].clientX - offsetX, ongoingTouches[idx].clientY - offsetY);
+                context.lineTo(touches[i].clientX - offsetX, touches[i].clientY - offsetY);
                 context.lineWidth = drawSettings.lineWidth;
                 context.strokeStyle = drawSettings.color;
                 context.lineJoin = 'round';

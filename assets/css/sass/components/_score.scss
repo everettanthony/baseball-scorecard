@@ -155,10 +155,11 @@
                     .score-box {
                         background: #fff;
                         border: 1px solid #dee2e6;
+                        height: 104px;
                         left: -6px;
                         position: absolute;
                         top: 1px;
-                        transform: scale(1.5) translate(16px, 10px);
+                        width: 134px;
                         z-index: 9;
 
                         @include mq($bp-md) {
@@ -167,6 +168,16 @@
 
                         .score-diamond-hdr {
                             display: flex;
+                        }
+
+                        .score-diamond {
+                            height: 52px;
+                            width: 52px;
+                        }
+
+                        .score-call-box {
+                            height: 10px;
+                            width: 10px;
                         }
                     }
 
@@ -230,10 +241,10 @@
 
     &-diamond {
         border: 1px solid #c3c3c3;
-        height: 35px;
+        height: 38px;
         margin:  0 auto;
         transform: rotate(45deg);
-        width: 35px;     
+        width: 38px;     
 
         &.diamond-fill {
             background-color: #000;
@@ -324,12 +335,12 @@
             background-position: left top;
             background-repeat: no-repeat;
             border: none;
-            border-radius: 0.375rem;
+            border-radius: 0;
             box-sizing: content-box;
-            height: 9px;
+            height: 12px;
             opacity: 1;
             padding: 0;
-            width: 9px;
+            width: 12px;
 
             &:hover {
                 opacity: .75;
@@ -341,14 +352,14 @@
             
             &.btn-close {
                 background-image: url("../../assets/img/icon-close.svg");    
-                background-size: 9px 9px;         
+                background-size: 12px 12px;         
             }
 
             &.btn-reset {
                 background-image: url("../../assets/img/icon-reset.svg"); 
-                background-size: 8px 8px;
-                height: 8px;
-                width: 8px;            
+                background-size: 12px 12px;
+                height: 12px;
+                width: 12px;            
             }
         }
     }
