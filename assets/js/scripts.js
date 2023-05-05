@@ -13,7 +13,7 @@ addEventListeners();
 function addEventListeners() {
     // Click listener to zoom in on score boxes
     scoreBoxes.forEach((box) => {
-        box.addEventListener('click', (evt) => {
+        box.addEventListener('dblclick', (evt) => {
             deactivateZoomedInnings();
             box.classList.toggle('score-zoom');
 
@@ -232,29 +232,7 @@ function initCanvas(el) {
                 context.fillStyle = drawSettings.color;
                 ongoingTouches.splice(idx, 1);  // remove it; we're done
             }
-        }
-
-        let lastTap = 0;
-        let timeout;
-
-            const curTime = new Date().getTime();
-            const tapLen = curTime - lastTap;
-            if (tapLen < 500 && tapLen > 0) {
-              alert('Double tapped!');
-
-              deactivateZoomedInnings();
-              box.classList.toggle('score-zoom');
-  
-              if (!box.classList.contains('canvas-active')) initCanvas(box);
-            } 
-            else {
-              timeout = setTimeout(() => {
-                clearTimeout(timeout);
-              }, 500);
-            }
-
-            lastTap = curTime;
-   
+        }   
     }
       
     function handleCancel(evt) {
