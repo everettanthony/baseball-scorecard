@@ -115,6 +115,7 @@ function addEventListeners() {
 function resetZoomedInnings() {
     scoreBoxes.forEach((box) => {
         box.classList.remove('score-zoom');
+        box.classList.remove('canvas-active');
     });    
 }
 
