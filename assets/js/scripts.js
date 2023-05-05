@@ -4,20 +4,23 @@ const gridCols = document.querySelectorAll('.grid-col');
 const pitchersTblCells = document.querySelectorAll('.pitchers-tbl tbody td');
 const editableDivs = document.querySelectorAll('[contenteditable="true"]');
 const scoreDiamonds = document.querySelectorAll('.score-diamond');
+const scoreCallBoxes = document.querySelectorAll('.score-call-box');
 const btnClose = document.querySelectorAll('.btn-close');
 const btnReset = document.querySelectorAll('.btn-reset');
+const btnZoom = document.querySelectorAll('.btn-zoom');
 let zoomedCell;
 
 addEventListeners();
 
 function addEventListeners() {
     // Click listener to zoom in on score boxes
-    scoreBoxes.forEach((box) => {
-        box.addEventListener('dblclick', (evt) => {
+    btnZoom.forEach((btn) => {
+        btn.addEventListener('click', (evt) => {
+            const parentCell = btn.closest('td');
             deactivateZoomedInnings();
-            box.classList.toggle('score-zoom');
+            parentCell.classList.toggle('score-zoom');
 
-            if (!box.classList.contains('canvas-active')) initCanvas(box);
+            if (!parentCell.classList.contains('canvas-active')) initCanvas(parentCell);
         });
     });
 
@@ -108,10 +111,20 @@ function addEventListeners() {
             diamond.classList.remove('diamond-fill');
             context.setTransform(1, 0, 0, 1, 0, 0);
             context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+            resetScoreCallBoxes();
         });
     });
+
+    // Balls and strikes boxes listener
+    scoreCallBoxes.forEach((box) => {
+        box.addEventListener('click', (evt) => {
+            box.classList.toggle('box-filled');
+        });
+    });
+
 }
 
+// Zoom out of active box score
 function deactivateZoomedInnings() {
     scoreBoxes.forEach((box) => {
         box.classList.remove('score-zoom');
@@ -119,6 +132,14 @@ function deactivateZoomedInnings() {
     });    
 }
 
+// Clear out filled balls and strikes
+function resetScoreCallBoxes() {
+    scoreCallBoxes.forEach((box) => {
+        box.classList.remove('box-filled');
+    });    
+}
+
+// Initialize content editable attribute on element
 function initEditable(el) {
     const range = document.createRange();
     const selection = window.getSelection();
@@ -131,6 +152,7 @@ function initEditable(el) {
     selection.addRange(range);
 }
 
+// Initialize the canvas for free drawing
 function initCanvas(el) {
     el.classList.add('canvas-active');
     const canvas = el.querySelector('canvas');
