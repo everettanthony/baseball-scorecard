@@ -102,8 +102,10 @@ function addEventListeners() {
     btnReset.forEach((btn) => {
         btn.addEventListener('click', (evt) => {
             const zoomed = btn.closest('.score-zoom');
+            const diamond = zoomed.querySelector('.score-diamond');
             const canvas = zoomed.querySelector('canvas');
             const context = canvas.getContext('2d');
+            diamond.classList.remove('diamond-fill');
             context.setTransform(1, 0, 0, 1, 0, 0);
             context.clearRect(0, 0, context.canvas.width, context.canvas.height);
         });
