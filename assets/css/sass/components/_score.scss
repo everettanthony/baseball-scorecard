@@ -156,11 +156,15 @@
                     .score-box {
                         background: #fff;
                         border: 1px solid #dee2e6;
-                        left: 0;
+                        left: -6px;
                         position: absolute;
-                        top: 0;
+                        top: 1px;
                         transform: scale(1.5) translate(16px, 10px);
                         z-index: 9;
+
+                        @include mq($bp-md) {
+                            left: -2px;
+                        }
 
                         .score-diamond-hdr {
                             display: flex;
