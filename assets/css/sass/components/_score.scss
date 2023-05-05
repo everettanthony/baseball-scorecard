@@ -19,8 +19,8 @@
                 th {
                     border-color: #fff;
                     padding: 0 0.5rem;
-                    vertical-align: bottom;   
-                            
+                    vertical-align: bottom; 
+                                       
                     [contenteditable="true"]:active,
                     [contenteditable="true"]:focus {
                         background-color: #fdfeff;
@@ -52,6 +52,7 @@
                     }
 
                     &:nth-child(2) {
+                        min-width: 165px;
                         width: 10%;
                     }
 
@@ -61,8 +62,8 @@
                     }
 
                     &:nth-child(n+4) {
-                        text-align: center;
                         min-width: 4%;
+                        text-align: center;
                         width: 4%;
                     }
                 }
@@ -78,6 +79,7 @@
 
             td {
                 height: 100%;
+                min-width: 76px;
                 padding: 0;
                 position: relative;
                 top: 0;
@@ -87,6 +89,7 @@
                     display: flex;
                     justify-content: flex-start; 
                     padding: 0.3rem 0.5rem;
+                    
 
                     &:not(:last-child) {
                         border-bottom: 1px dashed #c3c3c3;

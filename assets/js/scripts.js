@@ -186,6 +186,8 @@ function initCanvas(el) {
         diamond.classList.toggle('diamond-fill');
     });
 
+    const ongoingTouches = [];
+
     function handleStart(evt) {
         evt.preventDefault();
         const touches = evt.changedTouches;
