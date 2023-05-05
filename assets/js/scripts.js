@@ -19,13 +19,6 @@ function addEventListeners() {
 
             if (!box.classList.contains('canvas-active')) initCanvas(box);
         });
-
-        box.addEventListener('touchstart', (evt) => {
-            deactivateZoomedInnings();
-            box.classList.toggle('score-zoom');
-
-            if (!box.classList.contains('canvas-active')) initCanvas(box);
-        });
     });
 
     // Close zoomed in score box when clicked outside of it
@@ -127,7 +120,6 @@ function deactivateZoomedInnings() {
 }
 
 function initEditable(el) {
-    console.log(el);
     const range = document.createRange();
     const selection = window.getSelection();
 
@@ -241,6 +233,28 @@ function initCanvas(el) {
                 ongoingTouches.splice(idx, 1);  // remove it; we're done
             }
         }
+
+        let lastTap = 0;
+        let timeout;
+
+            const curTime = new Date().getTime();
+            const tapLen = curTime - lastTap;
+            if (tapLen < 500 && tapLen > 0) {
+              alert('Double tapped!');
+
+              deactivateZoomedInnings();
+              box.classList.toggle('score-zoom');
+  
+              if (!box.classList.contains('canvas-active')) initCanvas(box);
+            } 
+            else {
+              timeout = setTimeout(() => {
+                clearTimeout(timeout);
+              }, 500);
+            }
+
+            lastTap = curTime;
+   
     }
       
     function handleCancel(evt) {
