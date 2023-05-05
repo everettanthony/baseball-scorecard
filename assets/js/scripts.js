@@ -229,8 +229,8 @@ function initCanvas(el) {
     
             if (idx >= 0) {
                 context.beginPath();
-                context.moveTo(ongoingTouches[idx].clientX - (offsetX+25), ongoingTouches[idx].clientY - (offsetY+10));
-                context.lineTo(touches[i].clientX - (offsetX+25), touches[i].clientY - (offsetY+10));
+                context.moveTo(ongoingTouches[idx].clientX - (offsetX), ongoingTouches[idx].clientY - (offsetY));
+                context.lineTo(touches[i].clientX - (offsetX), touches[i].clientY - (offsetY));
                 context.lineWidth = drawSettings.lineWidth;
                 context.strokeStyle = drawSettings.color;
                 context.lineJoin = 'round';
