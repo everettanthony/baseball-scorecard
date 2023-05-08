@@ -108,9 +108,13 @@ function addEventListeners() {
         btn.addEventListener('click', (evt) => {
             const zoomed = btn.closest('.score-zoom');
             const diamond = zoomed.querySelector('.score-diamond');
+            const btnAdd = zoomed.querySelector('.btn-add');
+            const btnRemove = zoomed.querySelector('.btn-remove');
             const canvas = zoomed.querySelector('canvas');
             const context = canvas.getContext('2d');
             diamond.classList.remove('diamond-fill');
+            btnAdd.classList.remove('d-none');
+            btnRemove.classList.add('d-none');
             context.setTransform(1, 0, 0, 1, 0, 0);
             context.clearRect(0, 0, context.canvas.width, context.canvas.height);
             zoomed.removeAttribute('canvas-active');
@@ -158,7 +162,6 @@ function initEditable(el) {
 
 // Initialize the canvas for free drawing
 function initCanvas(el) {
-    console.log('init canvas');
     const canvas = el.querySelector('canvas');
     const context = canvas.getContext('2d');
     canvas.width = 134;
@@ -169,9 +172,13 @@ function initCanvas(el) {
     let y = 0;
     let offsetX;
     let offsetY;
-    let diamond;
+    let diamond, 
+        btnAdd, 
+        btnRemove;
 
     diamond = el.querySelector('.score-diamond');
+    btnAdd = el.querySelector('.btn-add');
+    btnRemove = el.querySelector('.btn-remove');
 
     const drawSettings = {
         color: 'black',
@@ -211,6 +218,18 @@ function initCanvas(el) {
 
     canvas.addEventListener('dblclick', (e) => {
         diamond.classList.toggle('diamond-fill');
+    });
+
+    btnAdd.addEventListener('click', (evt) => {
+        diamond.classList.add('diamond-fill');
+        btnAdd.classList.add('d-none');
+        btnRemove.classList.remove('d-none');
+    });
+
+    btnRemove.addEventListener('click', (evt) => {
+        diamond.classList.remove('diamond-fill');
+        btnRemove.classList.add('d-none');
+        btnAdd.classList.remove('d-none');
     });
 
     const ongoingTouches = [];

@@ -194,6 +194,11 @@
                             height: 10px;
                             width: 10px;
                         }
+
+                        .score-btns {
+                            display: block;
+                            z-index: 9; 
+                        }
                     }
 
                     .btn-zoom {
@@ -381,6 +386,35 @@
                 width: 12px;            
             }
         }
+    }
+
+    .score-btns { 
+        bottom: 0;
+        display: none;
+        position: absolute;
+        right: 5px;
+
+        button {
+            background-color: transparent;
+            background-position: left top;
+            background-repeat: no-repeat;
+            background-size: 12px 12px;
+            border: none;
+            border-radius: 0;
+            box-sizing: content-box;
+            height: 12px;
+            opacity: 1;
+            padding: 0;
+            width: 12px;
+
+            &.btn-add {
+                background-image: url("../../assets/img/icon-add.svg");            
+            }
+
+            &.btn-remove {
+                background-image: url("../../assets/img/icon-remove.svg");          
+            }
+        }     
     }
 
     &-call {
