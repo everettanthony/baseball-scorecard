@@ -110,7 +110,7 @@
                         canvas {
                             height: 100%;
                             left: 0;
-                          //  pointer-events: none;
+                            pointer-events: none;
                             position: absolute;
                             top: 0;
                             width: 100%;
@@ -206,9 +206,9 @@
                         display: none;
                     }
 
-                    // canvas {
-                    //     pointer-events: initial !important;
-                    // }
+                    canvas {
+                        pointer-events: auto !important;
+                    }
                 }
 
                 &.oneb {

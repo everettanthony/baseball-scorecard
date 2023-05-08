@@ -108,6 +108,7 @@ h1, h2, h3, h4 {
 .score-tbl tbody td div.score-box canvas {
   height: 100%;
   left: 0;
+  pointer-events: none;
   position: absolute;
   top: 0;
   width: 100%;
@@ -192,6 +193,9 @@ h1, h2, h3, h4 {
 }
 .score-tbl tbody td.score-zoom .btn-zoom {
   display: none;
+}
+.score-tbl tbody td.score-zoom canvas {
+  pointer-events: auto !important;
 }
 .score-tbl tbody td.oneb .score-diamond {
   border-right-color: #000;
