@@ -483,7 +483,7 @@ h1, h2, h3, h4 {
   width: 7px;
 }
 .score-call-box.box-filled {
-  background-color: #b4b4b4;
+  background-color: #000;
 }
 .score .btn-zoom {
   background-color: transparent;
