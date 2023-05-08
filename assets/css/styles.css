@@ -186,7 +186,8 @@ h1, h2, h3, h4 {
   height: 10px;
   width: 10px;
 }
-.score-tbl tbody td.score-zoom .score-box .score-btns {
+.score-tbl tbody td.score-zoom .score-box .score-btns,
+.score-tbl tbody td.score-zoom .score-box .base-btns {
   display: block;
   z-index: 9;
 }
@@ -195,6 +196,18 @@ h1, h2, h3, h4 {
 }
 .score-tbl tbody td.score-zoom canvas {
   pointer-events: initial !important;
+}
+.score-tbl tbody td.oneb .score-diamond {
+  border-right-color: #000;
+  border-right-width: 3px;
+}
+.score-tbl tbody td.twob .score-diamond {
+  border-top-color: #000;
+  border-top-width: 3px;
+}
+.score-tbl tbody td.threeb .score-diamond {
+  border-left-color: #000;
+  border-left-width: 3px;
 }
 .score-tbl tfoot tr [contenteditable=true]:active,
 .score-tbl tfoot tr [contenteditable=true]:focus {
@@ -391,6 +404,49 @@ h1, h2, h3, h4 {
 }
 .score .score-btns button.btn-remove {
   background-image: url("../../assets/img/icon-remove.svg");
+}
+.score .base-btns {
+  display: none;
+  position: absolute;
+  right: 3.5px;
+  top: 50%;
+  -webkit-transform: translateY(-55%);
+          transform: translateY(-55%);
+  z-index: 9;
+}
+.score .base-btns button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: transparent;
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  border: none;
+  border-radius: 0;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  color: #b5b5b5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  height: 14px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: 1;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+  width: 14px;
+}
+.score .base-btns button:not(:last-child) {
+  margin-bottom: 3px;
+}
+.score .base-btns button.base-active {
+  color: #727272;
 }
 .score-call {
   -webkit-box-align: start;

@@ -3,8 +3,8 @@ const colDivs = document.querySelectorAll('.score-tbl tbody td:nth-child(-n+3) d
 const gridCols = document.querySelectorAll('.grid-col');
 const pitchersTblCells = document.querySelectorAll('.pitchers-tbl tbody td');
 const editableDivs = document.querySelectorAll('[contenteditable="true"]');
-const scoreDiamonds = document.querySelectorAll('.score-diamond');
 const scoreCallBoxes = document.querySelectorAll('.score-call-box');
+const baseBtns = document.querySelectorAll('.base-btns button');
 const btnClose = document.querySelectorAll('.btn-close');
 const btnReset = document.querySelectorAll('.btn-reset');
 const btnZoom = document.querySelectorAll('.btn-zoom');
@@ -81,18 +81,6 @@ function addEventListeners() {
         });
     });
 
-    // Fill in/clear diamond on double click
-    scoreDiamonds.forEach((diamond) => {
-        diamond.addEventListener('dblclick', (evt) => {
-            if (diamond.classList.contains('diamond-fill')) {
-                diamond.classList.remove('diamond-fill');
-            }
-            else {
-                diamond.classList.add('diamond-fill');
-            }
-        });
-    });
-
     // Close zoomed in score box
     btnClose.forEach((btn) => {
         btn.addEventListener('click', (evt) => {
@@ -100,6 +88,13 @@ function addEventListeners() {
                 evt.target.closest('td').classList.remove('score-zoom');
           //      evt.target.closest('td').classList.remove('canvas-active');
             }, 25);
+        });
+    });
+
+    // Toggle active state on base buttons (1B, 2B, 3B)
+    baseBtns.forEach((btn) => {
+        btn.addEventListener('click', (evt) => {
+            btn.classList.toggle('base-active');
         });
     });
 
@@ -119,6 +114,7 @@ function addEventListeners() {
             context.clearRect(0, 0, context.canvas.width, context.canvas.height);
             zoomed.removeAttribute('canvas-active');
             resetScoreCallBoxes(zoomed);
+            resetBaseBtns(zoomed);
         });
     });
 
@@ -144,7 +140,7 @@ function resetScoreCallBoxes(el) {
     const callBoxes = el.querySelectorAll('.score-call-box');
     callBoxes.forEach((box) => {
         box.classList.remove('box-filled');
-    });    
+    });                                  
 }
 
 // Initialize content editable attribute on element
@@ -158,6 +154,16 @@ function initEditable(el) {
     range.selectNodeContents(el);          
     selection.removeAllRanges();
     selection.addRange(range);
+}
+
+// Reset state of base buttons
+function resetBaseBtns(el) {
+    const btns = el.querySelectorAll('.base-btns button');
+    btns.forEach((btn) => {
+        btn.classList.remove('base-active');
+    });
+
+    el.classList.remove('oneb','twob','threeb');
 }
 
 // Initialize the canvas for free drawing
@@ -174,11 +180,17 @@ function initCanvas(el) {
     let offsetY;
     let diamond, 
         btnAdd, 
-        btnRemove;
+        btnRemove,
+        btn1B,
+        btn2B,
+        btn3B;
 
     diamond = el.querySelector('.score-diamond');
     btnAdd = el.querySelector('.btn-add');
     btnRemove = el.querySelector('.btn-remove');
+    btn1B = el.querySelector('.btn-1b');
+    btn2B = el.querySelector('.btn-2b');
+    btn3B = el.querySelector('.btn-3b');
 
     const drawSettings = {
         color: 'black',
@@ -224,12 +236,25 @@ function initCanvas(el) {
         diamond.classList.add('diamond-fill');
         btnAdd.classList.add('d-none');
         btnRemove.classList.remove('d-none');
+        resetBaseBtns(el);
     });
 
     btnRemove.addEventListener('click', (evt) => {
         diamond.classList.remove('diamond-fill');
         btnRemove.classList.add('d-none');
         btnAdd.classList.remove('d-none');
+    });
+
+    btn1B.addEventListener('click', (evt) => {
+        el.classList.toggle('oneb');
+    });
+
+    btn2B.addEventListener('click', (evt) => {
+        el.classList.toggle('twob');
+    });
+
+    btn3B.addEventListener('click', (evt) => {
+        el.classList.toggle('threeb');
     });
 
     const ongoingTouches = [];

@@ -195,7 +195,8 @@
                             width: 10px;
                         }
 
-                        .score-btns {
+                        .score-btns,
+                        .base-btns {
                             display: block;
                             z-index: 9; 
                         }
@@ -207,6 +208,27 @@
 
                     canvas {
                         pointer-events: initial !important;
+                    }
+                }
+
+                &.oneb {
+                    .score-diamond {
+                        border-right-color: #000;
+                        border-right-width: 3px;
+                    }
+                }
+
+                &.twob {
+                    .score-diamond {
+                        border-top-color: #000;
+                        border-top-width: 3px;
+                    }
+                }
+
+                &.threeb {
+                    .score-diamond {
+                        border-left-color: #000;
+                        border-left-width: 3px;
                     }
                 }
             }
@@ -415,6 +437,45 @@
                 background-image: url("../../assets/img/icon-remove.svg");          
             }
         }     
+    }
+
+    .base-btns {
+        display: none;
+        position: absolute;
+        right: 3.5px;       
+        top: 50%;
+        transform: translateY(-55%);
+        z-index: 9;
+
+        button {
+            align-items: center;
+            background-color: transparent;
+            background-position: left top;
+            background-repeat: no-repeat;
+            background-size: 12px 12px;
+            border: none;
+            border-radius: 0;
+            box-sizing: content-box;
+            color: #b5b5b5;
+            display: flex;
+            font-size: 12px;
+            font-weight: 500;
+            height: 14px;
+            justify-content: center;
+            opacity: 1;
+            padding: 0;
+            text-align: center;
+            text-transform: uppercase;
+            width: 14px;
+
+            &:not(:last-child) {
+                margin-bottom: 3px;
+            }
+
+            &.base-active {
+                color: #727272;
+            }
+        }
     }
 
     &-call {
