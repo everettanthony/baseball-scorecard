@@ -59,21 +59,30 @@ h1, h2, h3, h4 {
   text-align: right;
   width: 100%;
 }
+.score-tbl thead tr:first-child th tr:first-child {
+  width: 76px;
+}
+.score-tbl thead tr:first-child th tr:nth-child(2) {
+  width: 182px;
+}
+.score-tbl thead tr:first-child th tr:nth-child(3) {
+  width: 76px;
+}
 .score-tbl thead tr:nth-child(n+2) {
   background-color: #efefef;
   font-weight: 600;
 }
 .score-tbl thead tr:nth-child(n+2) td:first-child {
   text-align: center;
-  width: 2%;
+  width: 76px;
 }
 .score-tbl thead tr:nth-child(n+2) td:nth-child(2) {
   min-width: 165px;
-  width: 10%;
+  width: 182px;
 }
 .score-tbl thead tr:nth-child(n+2) td:nth-child(3) {
   text-align: center;
-  width: 2%;
+  width: 76px;
 }
 .score-tbl thead tr:nth-child(n+2) td:nth-child(n+4) {
   min-width: 90px;
@@ -99,6 +108,7 @@ h1, h2, h3, h4 {
 .score-tbl tbody td div.score-box canvas {
   height: 100%;
   left: 0;
+  pointer-events: none;
   position: absolute;
   top: 0;
   width: 100%;
@@ -175,6 +185,9 @@ h1, h2, h3, h4 {
 }
 .score-tbl tbody td.score-zoom .btn-zoom {
   display: none;
+}
+.score-tbl tbody td.score-zoom canvas {
+  pointer-events: initial !important;
 }
 .score-tbl tfoot tr [contenteditable=true]:active,
 .score-tbl tfoot tr [contenteditable=true]:focus {
@@ -504,4 +517,49 @@ h1, h2, h3, h4 {
 
 .pg-container {
   margin: 0 5px;
+}
+.pg-row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+.pg-row > * {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-top: var(--bs-gutter-y);
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  width: 100%;
+}
+.pg-row > *.col-2 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 16.66666667%;
+}
+.pg-row > *.col-4 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 33.33333333%;
+}
+.pg-row > *.col-8 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 66.66666667%;
+}
+.pg-row > *.col-10 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 83.33333333%;
 }
