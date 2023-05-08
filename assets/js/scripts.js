@@ -114,7 +114,7 @@ function addEventListeners() {
             context.setTransform(1, 0, 0, 1, 0, 0);
             context.clearRect(0, 0, context.canvas.width, context.canvas.height);
             zoomed.removeAttribute('canvas-active');
-            resetScoreCallBoxes();
+            resetScoreCallBoxes(zoomed);
         });
     });
 
@@ -136,8 +136,9 @@ function deactivateZoomedInnings() {
 }
 
 // Clear out filled balls and strikes
-function resetScoreCallBoxes() {
-    scoreCallBoxes.forEach((box) => {
+function resetScoreCallBoxes(el) {
+    const callBoxes = el.querySelectorAll('.score-call-box');
+    callBoxes.forEach((box) => {
         box.classList.remove('box-filled');
     });    
 }
