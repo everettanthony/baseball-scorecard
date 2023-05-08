@@ -168,6 +168,7 @@ function resetBaseBtns(el) {
 
 // Initialize the canvas for free drawing
 function initCanvas(el) {
+    console.log('init canvas');
     const canvas = el.querySelector('canvas');
     const context = canvas.getContext('2d');
     canvas.width = 134;
@@ -288,6 +289,8 @@ function initCanvas(el) {
                 ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // swap in the new touch record
             }
         }
+
+        el.setAttribute('canvas-active', true);
     }
       
     function handleEnd(evt) {
