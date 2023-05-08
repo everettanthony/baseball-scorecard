@@ -101,7 +101,7 @@ h1, h2, h3, h4 {
 }
 .score-tbl tbody td div.score-box {
   height: 100%;
-  padding: 0.3rem 0.5rem;
+  padding: 1rem 0.5rem;
   position: relative;
   width: 100%;
 }
@@ -136,6 +136,7 @@ h1, h2, h3, h4 {
 }
 .score-tbl tbody td:nth-child(-n+3) {
   padding: 0;
+  vertical-align: middle;
 }
 .score-tbl tbody td:nth-child(-n+3) [contenteditable=true]:active,
 .score-tbl tbody td:nth-child(-n+3) [contenteditable=true]:focus {
@@ -452,11 +453,11 @@ h1, h2, h3, h4 {
   font-weight: 600;
 }
 .pitchers-tbl thead tr th:first-child, .pitchers-tbl thead tr th:nth-child(n+4) {
+  min-width: 25px;
   text-align: center;
-  width: 25px;
 }
 .pitchers-tbl thead tr th:nth-child(3) {
-  width: 30px;
+  min-width: 30px;
 }
 .pitchers-tbl tbody tr [contenteditable=true]:active,
 .pitchers-tbl tbody tr [contenteditable=true]:focus {
@@ -474,6 +475,9 @@ h1, h2, h3, h4 {
 }
 .pitchers-tbl tbody tr td {
   height: 34px;
+}
+.pitchers-tbl tbody tr td:first-child {
+  text-align: center;
 }
 .pitchers-tbl tbody tr td:nth-child(3), .pitchers-tbl tbody tr td:nth-child(n+4) {
   text-align: center;
