@@ -20,7 +20,9 @@ function addEventListeners() {
             deactivateZoomedInnings();
             parentCell.classList.toggle('score-zoom');
 
-            if (!parentCell.classList.contains('canvas-active')) initCanvas(parentCell);
+            if (parentCell.getAttribute('canvas-active')) return;
+
+            initCanvas(parentCell);
         });
     });
 
@@ -96,7 +98,7 @@ function addEventListeners() {
         btn.addEventListener('click', (evt) => {
             setTimeout(() => {
                 evt.target.closest('td').classList.remove('score-zoom');
-                evt.target.closest('td').classList.remove('canvas-active');
+          //      evt.target.closest('td').classList.remove('canvas-active');
             }, 25);
         });
     });
@@ -111,6 +113,7 @@ function addEventListeners() {
             diamond.classList.remove('diamond-fill');
             context.setTransform(1, 0, 0, 1, 0, 0);
             context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+            zoomed.removeAttribute('canvas-active');
             resetScoreCallBoxes();
         });
     });
@@ -154,7 +157,7 @@ function initEditable(el) {
 
 // Initialize the canvas for free drawing
 function initCanvas(el) {
-    el.classList.add('canvas-active');
+    console.log('init canvas');
     const canvas = el.querySelector('canvas');
     const context = canvas.getContext('2d');
     canvas.width = 134;
@@ -216,13 +219,6 @@ function initCanvas(el) {
         const touches = evt.changedTouches;
         offsetX = canvas.getBoundingClientRect().left;
         offsetY = canvas.getBoundingClientRect().top;
-        // Update canvas width and height attributes on zoom
-        // width: 89
-        // Height: 69
-
-        // Zoomed
-        // width: 130.5
-        // height: 100.64
     
         for (let i = 0; i < touches.length; i++) {
             ongoingTouches.push(copyTouch(touches[i]));
@@ -298,5 +294,7 @@ function initCanvas(el) {
         context.lineTo(x2, y2);
         context.closePath();
         context.stroke();
+
+        el.setAttribute('canvas-active', true);
     }
 }
