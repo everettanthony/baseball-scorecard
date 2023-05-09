@@ -20,6 +20,8 @@ function addEventListeners() {
             deactivateZoomedInnings();
             parentCell.classList.toggle('score-zoom');
 
+            initScoreControls(parentCell);
+
             if (parentCell.getAttribute('canvas-active')) return;
 
             initCanvas(parentCell);
@@ -166,9 +168,43 @@ function resetBaseBtns(el) {
     el.classList.remove('oneb','twob','threeb');
 }
 
+// Initialize the score buttons on zoomed in score box
+function initScoreControls(el) {
+    const diamond = el.querySelector('.score-diamond');
+    const btnAdd = el.querySelector('.btn-add');
+    const btnRemove = el.querySelector('.btn-remove');
+    const btn1B = el.querySelector('.btn-1b');
+    const btn2B = el.querySelector('.btn-2b');
+    const btn3B = el.querySelector('.btn-3b');  
+    
+    btnAdd.addEventListener('click', (evt) => {
+        diamond.classList.add('diamond-fill');
+        btnAdd.classList.add('d-none');
+        btnRemove.classList.remove('d-none');
+        resetBaseBtns(el);
+    });
+
+    btnRemove.addEventListener('click', (evt) => {
+        diamond.classList.remove('diamond-fill');
+        btnRemove.classList.add('d-none');
+        btnAdd.classList.remove('d-none');
+    });
+
+    btn1B.addEventListener('click', (evt) => {
+        el.classList.toggle('oneb');
+    });
+
+    btn2B.addEventListener('click', (evt) => {
+        el.classList.toggle('twob');
+    });
+
+    btn3B.addEventListener('click', (evt) => {
+        el.classList.toggle('threeb');
+    });
+}
+
 // Initialize the canvas for free drawing
 function initCanvas(el) {
-    console.log('init canvas');
     const canvas = el.querySelector('canvas');
     const context = canvas.getContext('2d');
     canvas.width = 148;
@@ -179,19 +215,6 @@ function initCanvas(el) {
     let y = 0;
     let offsetX;
     let offsetY;
-    let diamond, 
-        btnAdd, 
-        btnRemove,
-        btn1B,
-        btn2B,
-        btn3B;
-
-    diamond = el.querySelector('.score-diamond');
-    btnAdd = el.querySelector('.btn-add');
-    btnRemove = el.querySelector('.btn-remove');
-    btn1B = el.querySelector('.btn-1b');
-    btn2B = el.querySelector('.btn-2b');
-    btn3B = el.querySelector('.btn-3b');
 
     const drawSettings = {
         color: 'black',
@@ -231,31 +254,6 @@ function initCanvas(el) {
 
     canvas.addEventListener('dblclick', (e) => {
         diamond.classList.toggle('diamond-fill');
-    });
-
-    btnAdd.addEventListener('click', (evt) => {
-        diamond.classList.add('diamond-fill');
-        btnAdd.classList.add('d-none');
-        btnRemove.classList.remove('d-none');
-        resetBaseBtns(el);
-    });
-
-    btnRemove.addEventListener('click', (evt) => {
-        diamond.classList.remove('diamond-fill');
-        btnRemove.classList.add('d-none');
-        btnAdd.classList.remove('d-none');
-    });
-
-    btn1B.addEventListener('click', (evt) => {
-        el.classList.toggle('oneb');
-    });
-
-    btn2B.addEventListener('click', (evt) => {
-        el.classList.toggle('twob');
-    });
-
-    btn3B.addEventListener('click', (evt) => {
-        el.classList.toggle('threeb');
     });
 
     const ongoingTouches = [];

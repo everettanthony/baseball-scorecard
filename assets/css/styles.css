@@ -202,12 +202,18 @@ h1, h2, h3, h4 {
   border-right-width: 3px;
 }
 .score-tbl tbody td.twob .score-diamond {
+  border-right-color: #000;
   border-top-color: #000;
+  border-right-width: 3px;
   border-top-width: 3px;
 }
 .score-tbl tbody td.threeb .score-diamond {
   border-left-color: #000;
+  border-right-color: #000;
+  border-top-color: #000;
   border-left-width: 3px;
+  border-right-width: 3px;
+  border-top-width: 3px;
 }
 .score-tbl tfoot tr [contenteditable=true]:active,
 .score-tbl tfoot tr [contenteditable=true]:focus {
