@@ -171,8 +171,8 @@ function initCanvas(el) {
     console.log('init canvas');
     const canvas = el.querySelector('canvas');
     const context = canvas.getContext('2d');
-    canvas.width = 134;
-    canvas.height = 104;
+    canvas.width = 148;
+    canvas.height = 114;
 
     let isDrawing = false;
     let x = 0;
