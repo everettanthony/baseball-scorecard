@@ -1,4 +1,5 @@
-const scoreBoxes = document.querySelectorAll('.score-tbl tbody td:nth-child(n+4)');
+const tblScoreCells = document.querySelectorAll('.score-tbl tbody td:nth-child(n+4)');
+const scoreBoxes = document.querySelectorAll('.score-box');
 const colDivs = document.querySelectorAll('.score-tbl tbody td:nth-child(-n+3) div');
 const gridCols = document.querySelectorAll('.grid-col');
 const pitchersTblCells = document.querySelectorAll('.pitchers-tbl tbody td');
@@ -20,13 +21,16 @@ function addEventListeners() {
             deactivateZoomedInnings();
             parentCell.classList.toggle('score-zoom');
 
-            initScoreControls(parentCell);
-
             if (parentCell.getAttribute('canvas-active')) return;
 
             initCanvas(parentCell);
         });
     });
+
+    // Initialize controls within score boxes
+    scoreBoxes.forEach((box) => {
+        initScoreControls(box.parentElement);
+    });    
 
     // Close zoomed in score box when clicked outside of it
     document.body.addEventListener('click', (evt) => {
@@ -88,7 +92,6 @@ function addEventListeners() {
         btn.addEventListener('click', (evt) => {
             setTimeout(() => {
                 evt.target.closest('td').classList.remove('score-zoom');
-          //      evt.target.closest('td').classList.remove('canvas-active');
             }, 25);
         });
     });
@@ -126,12 +129,11 @@ function addEventListeners() {
             box.classList.toggle('box-filled');
         });
     });
-
 }
 
 // Zoom out of active box score
 function deactivateZoomedInnings() {
-    scoreBoxes.forEach((box) => {
+    tblScoreCells.forEach((box) => {
         box.classList.remove('score-zoom');
         box.classList.remove('canvas-active');
     });    
@@ -175,8 +177,8 @@ function initScoreControls(el) {
     const btnRemove = el.querySelector('.btn-remove');
     const btn1B = el.querySelector('.btn-1b');
     const btn2B = el.querySelector('.btn-2b');
-    const btn3B = el.querySelector('.btn-3b');  
-    
+    const btn3B = el.querySelector('.btn-3b'); 
+      
     btnAdd.addEventListener('click', (evt) => {
         diamond.classList.add('diamond-fill');
         btnAdd.classList.add('d-none');
